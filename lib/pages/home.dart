@@ -7,7 +7,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Breakfast",
@@ -23,7 +25,7 @@ class HomePage extends StatelessWidget {
             alignment: Alignment.center,
             margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(0xffF7F8F8),
               borderRadius: BorderRadius.circular(10),
             ),
             child: SvgPicture.asset(
@@ -41,13 +43,70 @@ class HomePage extends StatelessWidget {
               alignment: Alignment.center,
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xffF7F8F8),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: SvgPicture.asset(
                 "assets/icons/dots.svg",
                 height: 5,
                 width: 5,
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 40, left: 20, right: 20),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xff1D1617).withOpacity(0.11),
+                  blurRadius: 40,
+                  spreadRadius: 0.0,
+                ),
+              ],
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "Search Pancake",
+                hintStyle: TextStyle(color: Color(0xffDDDADA), fontSize: 14),
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: SvgPicture.asset(
+                    "assets/icons/Search.svg",
+                    height: 20,
+                    width: 20,
+                  ),
+                ),
+                suffixIcon: SizedBox(
+                  width: 100,
+                  child: IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        VerticalDivider(
+                          color: Colors.black,
+                          indent: 12,
+                          endIndent: 12,
+                          thickness: 0.1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: SvgPicture.asset("assets/icons/Filter.svg"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding: EdgeInsets.all(15),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide.none,
+                ),
               ),
             ),
           ),
