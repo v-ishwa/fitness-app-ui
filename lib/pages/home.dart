@@ -1,4 +1,5 @@
 import 'package:fitness_app_ui/models/category_model.dart';
+import 'package:fitness_app_ui/models/diet_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,14 +12,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<CategoryModel> categories = [];
+  List<DietModel> diets = [];
 
-  void _getCategories() {
+  void getInitialInfo() {
     categories = CategoryModel.getCategories();
+    diets = DietModel.getDiets();
   }
 
   @override
   Widget build(BuildContext context) {
-    _getCategories();
+    getInitialInfo();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -88,11 +91,7 @@ class _HomePageState extends State<HomePage> {
                 hintStyle: TextStyle(color: Color(0xffDDDADA), fontSize: 14),
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: SvgPicture.asset(
-                    "assets/icons/Search.svg",
-                    height: 20,
-                    width: 20,
-                  ),
+                  child: SvgPicture.asset("assets/icons/Search.svg"),
                 ),
                 suffixIcon: SizedBox(
                   width: 100,
@@ -148,12 +147,11 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
-                    // print("Path: ${categories[index].iconPath}");
                     return Container(
                       width: 100,
                       decoration: BoxDecoration(
                         color: categories[index].boxColor.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(20),
                       ),
 
                       child: Column(
@@ -179,6 +177,96 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.black,
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 40),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Text(
+                  "Recommendation\nfor Diet",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              SizedBox(height: 15),
+              SizedBox(
+                height: 240,
+                child: ListView.separated(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  separatorBuilder: (context, index) => SizedBox(width: 25),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: diets.length,
+                  itemBuilder: (context, index) {
+                    print("diet icon path: ${diets[index].iconPath}");
+                    return Container(
+                      width: 210,
+                      decoration: BoxDecoration(
+                        color: diets[index].boxColor.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SvgPicture.asset(diets[index].iconPath),
+                          Column(
+                            children: [
+                              Text(
+                                diets[index].name,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                "${diets[index].level} | ${diets[index].duration} | ${diets[index].calorie}",
+                                style: TextStyle(
+                                  color: Color(0xff7B6F72),
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Container(
+                            alignment: Alignment.center,
+                            height: 45,
+                            width: 130,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              gradient: LinearGradient(
+                                colors: [
+                                  diets[index].viewIsSelected
+                                      ? Color(0xff9DCEFF)
+                                      : Colors.transparent,
+                                  diets[index].viewIsSelected
+                                      ? Color(0xff92A3FD)
+                                      : Colors.transparent,
+                                ],
+                              ),
+                            ),
+                            child: Text(
+                              "View",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
                         ],
