@@ -29,14 +29,14 @@ class DietModel {
         level: "Easy ",
         duration: "30 min",
         calorie: "180kcal",
-        viewIsSelected: false,
+        viewIsSelected: true,
         boxColor: Color(0xff92A3FD),
       ),
     );
     diets.add(
       DietModel(
-        name: "Honey Pancake",
-        iconPath: "assets/icons/honey-pancakes.svg",
+        name: "Canai Bread",
+        iconPath: "assets/icons/canai-bread.svg",
         level: "Easy ",
         duration: "30 min",
         calorie: "180kcal",
@@ -46,8 +46,8 @@ class DietModel {
     );
     diets.add(
       DietModel(
-        name: "Honey Pancake",
-        iconPath: "assets/icons/honey-pancakes.svg",
+        name: "Canai Bread",
+        iconPath: "assets/icons/canai-bread.svg",
         level: "Easy ",
         duration: "30 min",
         calorie: "180kcal",
